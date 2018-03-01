@@ -26,6 +26,10 @@ int lib_close(lua_State *L) {
     return 1;
 }
 
+// Not currently using this, but might be worth
+// grabbing all symbols we want to call from lua
+// at library load time and passing them to lib_call
+// rather than calling dlsym each time in lib_call.
 int lib_sym(lua_State *L) {
     void* Handle       = lua_touserdata(L, 1);
     const char* Symbol = lua_tostring(L, 2);
@@ -35,7 +39,7 @@ int lib_sym(lua_State *L) {
     return 1;
 }
 
-int lib_call(lua_State *L) {
+int lib_call_rt(lua_State *L) {
 
     void* Handle       = lua_touserdata(L, 1);
     const char* Symbol = lua_tostring(L, 2);
@@ -76,7 +80,7 @@ int luaopen_dylib(lua_State *L) {
         { "open", lib_open },
         { "close",  lib_close },
         { "sym",  lib_sym },
-        { "call",  lib_call },
+        { "call_rt",  lib_call_rt },
         { "call_loader",  lib_call_loader },
         { NULL, NULL },
     };

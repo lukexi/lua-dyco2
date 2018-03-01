@@ -72,5 +72,5 @@ local double_woof_handle = dylib.open(compile_source(double_woof_source))
 dylib.call_loader(double_woof_handle, "Woof_Loader", woof_lib_handle)
 
 -- Finally, call a function that uses Realtalk as its FFI.
-local result = dylib.call(double_woof_handle, "DoubleWoof_RT", rt.value(123))
+local result = dylib.call_rt(double_woof_handle, "DoubleWoof_RT", rt.value(123))
 print(string.format("Double Woof musta woofed like %i times!", result))
