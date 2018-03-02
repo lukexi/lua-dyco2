@@ -6,10 +6,7 @@
 #include "rtlua.h"
 
 typedef rt_ref (*rt_ffi_func)(rt_state* rt, rt_ref args);
-
 typedef void (*loader_func)(void*);
-
-
 
 int lib_open(lua_State *L) {
     const char* Path    = lua_tostring(L, 1);
