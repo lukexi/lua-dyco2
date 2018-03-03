@@ -4,6 +4,7 @@ local rt = require("rtlua").create_state {}
 compiler = require 'dylib-lua'
 dylib    = require 'dylib'
 
+-- FIXME: This should also support globals that are not functions.
 function create_loader_header(name, source)
     local header = "#include <dlfcn.h>\n\n"
     local functions = {}
